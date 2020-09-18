@@ -63,6 +63,7 @@ const Pokemon = (props) => {
                 <div className="types">
                   {el.types.map((pokeType) => (
                     <p
+                      className={`${pokeType.type.name}`}
                       key={pokeType.type.name}
                       to={`/type/${pokeType.type.name}`}
                     >
