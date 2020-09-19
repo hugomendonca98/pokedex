@@ -6,6 +6,7 @@ import HeaderPokemon from "../../components/header-pokemon/index";
 import { MDBProgress } from "mdbreact";
 import { PokemonStyled } from "./styles";
 import api from "../../service/api";
+import Moves from "./Moves/Moves";
 
 const Pokemon = (props) => {
   const [pokemonInfo, setPokemonInfo] = useState([]);
@@ -26,19 +27,14 @@ const Pokemon = (props) => {
   }
 
   function attributeName(attr) {
-    if (
-      attr === "hp" ||
-      attr === "attack" ||
-      attr === "defense" ||
-      attr === "speed"
-    ) {
-      return attr.toUpperCase();
-    } else if (attr === "special-attack" || attr === "special-defense") {
+    if (attr === "special-attack" || attr === "special-defense") {
       if (attr === "special-attack") {
         return "SP ATK";
       } else {
         return "SP DEF";
       }
+    } else {
+      return attr.toUpperCase();
     }
   }
 
@@ -95,6 +91,24 @@ const Pokemon = (props) => {
             <div className="abilities">
               {el.abilities.map((ab) => (
                 <p key={ab.ability.name}>Abilidade: {ab.ability.name}</p>
+              ))}
+            </div>
+            <div>
+              {el.moves.map((move) => (
+                <div key={move.move.name}>
+                  <Moves
+                    moveName={move.move.name}
+                    levelLearned={
+                      move.version_group_details[0].level_learned_at
+                    }
+                    learnMethod={
+                      move.version_group_details[0].move_learn_method.name
+                    }
+                    gameVersion={
+                      move.version_group_details[0].version_group.name
+                    }
+                  />
+                </div>
               ))}
             </div>
           </div>
