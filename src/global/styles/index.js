@@ -1,4 +1,4 @@
-import {createGlobalStyle} from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
 
@@ -9,4 +9,11 @@ export const GlobalStyle = createGlobalStyle`
         padding: 0;
     }
 
-`
+    .title {
+        text-align: center;
+        margin: 10px;
+        margin-top: 50px;
+        font-family: Roboto, sans-serif;
+    }
+
+`;

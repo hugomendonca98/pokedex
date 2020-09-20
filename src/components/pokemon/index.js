@@ -84,16 +84,17 @@ const Pokemon = (props) => {
                 ))}
               </div>
             </div>
-            <div className="weight">
+            {/*<div className="weight">
               <p>Height: {el.height}</p>
               <p>weight: {el.weight}</p>
-            </div>
+                </div>*/}
             <div className="abilities">
               {el.abilities.map((ab) => (
                 <p key={ab.ability.name}>Abilidade: {ab.ability.name}</p>
               ))}
             </div>
             <div>
+              <h2 className="title">Moves: </h2>
               {el.moves.map((move) => (
                 <div key={move.move.name}>
                   <Moves
