@@ -5,7 +5,8 @@ import { redSoft } from "../../../global/styles/colors";
 export const MovesStyled = styled.div`
   section {
     display: flex;
-    box-shadow: 0 1px 5px rgba(242, 85, 85, 0.75);
+    /*box-shadow: 0 1px 5px rgba(242, 85, 85, 0.75);*/
+    border: solid 1px #ccc;
     margin: 10px;
   }
   display: flex;

@@ -7,6 +7,7 @@ import { MDBProgress } from "mdbreact";
 import { PokemonStyled } from "./styles";
 import api from "../../service/api";
 import Moves from "./Moves/Moves";
+import Abilities from "./Abilities/Abilities";
 
 const Pokemon = (props) => {
   const [pokemonInfo, setPokemonInfo] = useState([]);
@@ -84,13 +85,9 @@ const Pokemon = (props) => {
                 ))}
               </div>
             </div>
-            {/*<div className="weight">
-              <p>Height: {el.height}</p>
-              <p>weight: {el.weight}</p>
-                </div>*/}
             <div className="abilities">
               {el.abilities.map((ab) => (
-                <p key={ab.ability.name}>Abilidade: {ab.ability.name}</p>
+                <Abilities key={ab.ability.name} ability={ab.ability.name} />
               ))}
             </div>
             <div>
@@ -98,6 +95,7 @@ const Pokemon = (props) => {
               {el.moves.map((move) => (
                 <div key={move.move.name}>
                   <Moves
+                    moveUrl={move.move.url}
                     moveName={move.move.name}
                     levelLearned={
                       move.version_group_details[0].level_learned_at
