@@ -8,6 +8,7 @@ import { PokemonStyled } from "./styles";
 import api from "../../service/api";
 import Moves from "./Moves/Moves";
 import Abilities from "./Abilities/Abilities";
+import Evolutions from "./Evolutions/Evolutions";
 
 const Pokemon = (props) => {
   const [pokemonInfo, setPokemonInfo] = useState([]);
@@ -50,13 +51,13 @@ const Pokemon = (props) => {
         {pokemonInfo.map((el) => (
           <div key={el.id}>
             <div className="card-flex">
+              <div className="navegation">
+                <h1>{`${el.name.toUpperCase()} #${el.id}`}</h1>
+              </div>
               <div>
                 <img src={el.sprites.front_default} alt="" />
               </div>
               <div className="infos">
-                <div className="navegation">
-                  <h1>{el.name}</h1>
-                </div>
                 <div className="types">
                   {el.types.map((pokeType) => (
                     <p
@@ -85,13 +86,16 @@ const Pokemon = (props) => {
                 ))}
               </div>
             </div>
+            <div>
+              <Evolutions specieUrl={el.species.url} />
+            </div>
             <div className="abilities">
               {el.abilities.map((ab) => (
                 <Abilities key={ab.ability.name} ability={ab.ability.name} />
               ))}
             </div>
-            <div>
-              <h2 className="title">Moves: </h2>
+            <h2 className="title">Moves: </h2>
+            <div className="flex">
               {el.moves.map((move) => (
                 <div key={move.move.name}>
                   <Moves

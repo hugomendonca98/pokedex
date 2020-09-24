@@ -2,10 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { MovesStyled } from "./styles";
 
-function Moves({ moveName, levelLearned, learnMethod, gameVersion, moveUrl }) {
-  const [accuracy, setAccuracy] = useState("");
-  const [pp, setPp] = useState("");
-  const [power, setPower] = useState("");
+function Moves({ moveName, levelLearned, learnMethod, moveUrl }) {
+  const [type, setType] = useState("");
 
   const textUpper = (text) => {
     return text.replace("-", " ").toUpperCase();
@@ -14,26 +12,18 @@ function Moves({ moveName, levelLearned, learnMethod, gameVersion, moveUrl }) {
   useEffect(() => {
     async function movesInfos() {
       const response = await axios.get(`${moveUrl}`);
-      setAccuracy(response.data.accuracy);
-      setPower(response.data.power);
-      setPp(response.data.pp);
+      setType(response.data.type.name);
     }
 
     movesInfos();
-  }, [accuracy, moveUrl]);
+  }, [moveUrl]);
 
   return (
     <MovesStyled>
-      <section>
+      <section className={type}>
         <div>
-          <p>{`Move Name: ${textUpper(moveName)}`}</p>
-          <p>{`Level Learned: ${levelLearned}`}</p>
-          <p>{`Accuracy: ${accuracy === null ? "0" : accuracy}`}</p>
-        </div>
-        <div>
-          <p>{`Learn Method: ${textUpper(learnMethod)}`}</p>
-          <p>{`PP: ${pp}`}</p>
-          <p>{`Power: ${power}`}</p>
+          <p>{textUpper(moveName)}</p>
+          <p>{textUpper(type)}</p>
         </div>
       </section>
     </MovesStyled>

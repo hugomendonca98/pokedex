@@ -1,18 +1,14 @@
 import styled from "styled-components";
 
-import { redSoft } from "../../../global/styles/colors";
-
 export const MovesStyled = styled.div`
-  section {
-    display: flex;
-    /*box-shadow: 0 1px 5px rgba(242, 85, 85, 0.75);*/
-    border: solid 1px #ccc;
-    margin: 10px;
-  }
   display: flex;
-  justify-content: center;
-  align-items: center;
+  section {
+    margin: 10px;
+    border-radius: 3px;
+  }
   div {
+    display: flex;
+    justify-content: space-between;
     text-align: justify;
     width: 300px;
     color: #2d2d2d;

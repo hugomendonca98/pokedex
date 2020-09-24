@@ -1,27 +1,6 @@
 import styled from "styled-components";
 
-import {
-  SecundaryColor,
-  PrimaryTextColor,
-  grass,
-  normal,
-  fire,
-  fighting,
-  water,
-  poison,
-  flying,
-  electric,
-  ground,
-  psychic,
-  rock,
-  ice,
-  bug,
-  dragon,
-  dark,
-  ghost,
-  steal,
-  fairy,
-} from "../../global/styles/colors";
+import { SecundaryColor, PrimaryTextColor } from "../../global/styles/colors";
 
 export const PokemonStyled = styled.div`
   button {
@@ -42,8 +21,8 @@ export const PokemonStyled = styled.div`
   }
 
   .navegation {
-    margin-bottom: 40px;
-    margin-top: 40px;
+    margin-bottom: 20px;
+    margin-top: 20px;
     color: ${PrimaryTextColor};
 
     h1 {
@@ -55,6 +34,9 @@ export const PokemonStyled = styled.div`
   .card-flex {
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
   }
 
   div {
@@ -134,61 +116,6 @@ export const PokemonStyled = styled.div`
       padding: 5px 10px;
       border-radius: 3px;
     }
-  }
-
-  .grass {
-    background: ${grass};
-  }
-  .normal {
-    background-color: ${normal};
-  }
-  .fire {
-    background-color: ${fire};
-  }
-  .fighting {
-    background-color: ${fighting};
-  }
-  .water {
-    background-color: ${water};
-  }
-  .poison {
-    background-color: ${poison};
-  }
-  .flying {
-    background-color: ${flying};
-  }
-  .electric {
-    background-color: ${electric};
-  }
-  .gorund {
-    background-color: ${ground};
-  }
-  .psychic {
-    background-color: ${psychic};
-  }
-  .rock {
-    background-color: ${rock};
-  }
-  .ice {
-    background-color: ${ice};
-  }
-  .bug {
-    background-color: ${bug};
-  }
-  .dragon {
-    background-color: ${dragon};
-  }
-  .ghost {
-    background-color: ${ghost};
-  }
-  .dark {
-    background-color: ${dark};
-  }
-  .steal {
-    background-color: ${steal};
-  }
-  .fairy {
-    background-color: ${fairy};
   }
 
   @media (max-width: 377px) {
