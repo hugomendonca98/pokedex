@@ -1,38 +1,40 @@
-import React from "react";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useEffect, useState } from "react";
+
 import api from "../../../service/api";
 
-function Evolutions({ specieUrl }) {
-  const [teste, setTest] = useState(null);
-  const [imageUrl, setImgageUrl] = useState([]);
-
-  function fake(name) {
-    async function pqp(name) {
-      const response = await api.get(`/${name}`);
-      [response.data].forEach((el) => {
-        setImgageUrl(el.sprites.front_default);
-      });
-    }
-    pqp(name);
-    console.log(imageUrl);
-  }
+function Evolutions({ url }) {
+  const [chain, setChain] = useState([]);
 
   useEffect(() => {
     async function evolutionChain() {
-      const response = await axios.get(specieUrl);
-      const evolutionInfos = await axios.get(response.data.evolution_chain.url);
-      setTest(evolutionInfos.data.chain.evolves_to);
+      const shortUrl = url.replace("https://pokeapi.co/api/v2", "");
+      const response = await api.get(shortUrl);
+      const evolutionChainUrl = response.data.evolution_chain.url.replace(
+        "https://pokeapi.co/api/v2",
+        ""
+      );
+      const resChain = await api.get(evolutionChainUrl);
+      setChain(resChain.data.chain);
     }
     evolutionChain();
-  }, [specieUrl]);
+  }, [url]);
+
   return (
     <div>
-      <p>evoluções:</p>
-      {teste !== null &&
-        // eslint-disable-next-line jsx-a11y/alt-text
-        teste.map((el) => fake(el.species.name))}
-      {console.log(imageUrl)}
+      {chain.evolves_to !== undefined &&
+        chain.evolves_to.map((el) => (
+          <div key={el.species.name}>
+            {el.evolves_to.length > 0 ? (
+              el.evolves_to.map((evolution) => (
+                <p
+                  key={evolution.species.name}
+                >{`${chain.species.name} -> ${el.species.name} -> ${evolution.species.name}`}</p>
+              ))
+            ) : (
+              <p>{`${chain.species.name} -> ${el.species.name}`}</p>
+            )}
+          </div>
+        ))}
     </div>
   );
 }

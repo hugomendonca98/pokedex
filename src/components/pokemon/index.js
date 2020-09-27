@@ -10,13 +10,15 @@ import Moves from "./Moves/Moves";
 import Abilities from "./Abilities/Abilities";
 import Evolutions from "./Evolutions/Evolutions";
 
+const imagemUrl = "generation-v.black-white.animated.front_default";
+
 const Pokemon = (props) => {
   const [pokemonInfo, setPokemonInfo] = useState([]);
 
   useEffect(() => {
     async function loadInfos() {
       const { pokemon } = props.match.params;
-      const response = await api.get(`/${pokemon}`);
+      const response = await api.get(`/pokemon/${pokemon}`);
       setPokemonInfo([response.data]);
     }
 
@@ -86,9 +88,7 @@ const Pokemon = (props) => {
                 ))}
               </div>
             </div>
-            <div>
-              <Evolutions specieUrl={el.species.url} />
-            </div>
+            <Evolutions url={el.species.url} />
             <div className="abilities">
               {el.abilities.map((ab) => (
                 <Abilities key={ab.ability.name} ability={ab.ability.name} />

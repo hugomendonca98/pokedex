@@ -9,7 +9,7 @@ const Content = (props) => {
 
   useEffect(() => {
     async function loadPokemons() {
-      const response = await api.get("?offset=0&limit=807");
+      const response = await api.get("/pokemon?offset=0&limit=807");
       setPokemonName(response.data.results);
     }
     loadPokemons();
