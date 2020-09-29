@@ -30,6 +30,10 @@ export const GlobalStyle = createGlobalStyle`
         padding: 0;
     }
 
+    body {
+      background: #fff;
+    }
+
     .title {
         text-align: center;
         margin: 10px;
