@@ -37,22 +37,35 @@ function Evolutions({ url }) {
 
   return (
     <div>
-      {console.log(chain)}
       {chain.evolves_to !== undefined &&
         chain.evolves_to.map((el) => (
           <div key={el.species.name}>
             {el.evolves_to.length > 0 ? (
-              el.evolves_to.map((evolution) => (
+              <>
+                {el.evolves_to.map((evolution) => (
+                  <>
+                    {console.log(
+                      "first",
+                      chain,
+                      "second",
+                      el,
+                      "last",
+                      evolution
+                    )}
+                    <EvoChain
+                      evoPrimary={chain}
+                      evoSecundary={el}
+                      evoLast={evolution}
+                    />
+                  </>
+                ))}
+              </>
+            ) : (
+              <div key={chain.species.name}>
                 <EvoChain
-                  key={evolution.species.name}
                   evoPrimary={chain.species.name}
                   evoSecundary={el.species.name}
-                  evoLast={evolution.species.name}
                 />
-              ))
-            ) : (
-              <div>
-                <p>{`${chain.species.name} -> ${el.species.name}`}</p>
                 {el.evolution_details.map((details) =>
                   Object.entries(details).map((condition) =>
                     evolvesDetails(condition)
